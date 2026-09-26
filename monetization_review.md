@@ -48,7 +48,7 @@ The Rulio monetization framework transitions the platform from a complex, multi-
 
 ## 3. Self-Serve Onboarding & Authentication Architecture
 
-### 7-Step Frictionless Flow (< 2 minutes to value)
+### 10-Step Frictionless Flow (< 2 minutes to value)
 
 ```
 1. Visitor lands on /pro
@@ -59,7 +59,7 @@ The Rulio monetization framework transitions the platform from a complex, multi-
 6. Immediate audio session playback
 7. Day 6: Email notification ("Trial ends tomorrow, upgrade to keep Pro access")
 8. Day 7: Trial expires → User redirected to /welcome with locked Pro features
-9. User clicks "Upgrade Now" → Redirected to pre-authenticated Stripe Checkout
+9. User clicks "Upgrade Now" on /welcome → Redirected to pre-authenticated Stripe Checkout
 10. Post-payment → Redirected to /welcome?subscribed=1 with full Pro subscription
 ```
 
@@ -78,8 +78,10 @@ The Rulio monetization framework transitions the platform from a complex, multi-
 ## 4. Technical Infrastructure: Auth, Stripe, & Webhooks
 
 ### A. Auth Schema & Database (`engine/supabase-auth-schema.sql`)
-- User table stores `stripe_customer_id`, `subscription_status` (`trialing`, `active`, `past_due`, `canceled`), `trial_ends_at`, and `current_period_end`.
-- Row-Level Security (RLS) ensures users can only view and update their own session presets and account data.
+- Profile stores `stripe_customer_id`, `trial_started_at`, `trial_ends_at`, and `trial_converted`.
+- Subscription status is stored in `subscriptions.status` (`trialing`, `active`, `past_due`, `canceled`).
+- Subscription period end is stored in `subscriptions.current_period_end`.
+- Row-Level Security (RLS) ensures users can only view and update their own session presets, profile, and subscription data.
 
 ### B. Magic Link Authentication Handler (`engine/app/api/auth/magic-link/route.ts`)
 - Issues Supabase OTP/Magic Link pointing to `/auth/callback`.
@@ -96,10 +98,10 @@ The Rulio monetization framework transitions the platform from a complex, multi-
 
 ### E. Webhook Event Handler (`engine/app/api/webhooks/stripe/route.ts`)
 Listens to critical Stripe events and updates Supabase database in real time:
-- `checkout.session.completed` -> Upgrades user status to `active`, records subscription ID.
-- `customer.subscription.updated` -> Updates subscription plan, status, and renewal dates.
-- `customer.subscription.deleted` -> Reverts user status to `free` tier.
-- `invoice.payment_failed` -> Flags account status as `past_due` and triggers retry email.
+- `checkout.session.completed` -> Handles one-time checkout sessions and records completion.
+- `customer.subscription.created` / `customer.subscription.updated` -> Updates subscription plan, status (`active`), and renewal dates in `subscriptions`.
+- `customer.subscription.deleted` -> Marks subscription status as `canceled` in `subscriptions`.
+- `invoice.payment_failed` -> Flags subscription status as `past_due` and triggers retry email.
 
 ---
 
@@ -135,7 +137,7 @@ Week 12: Quarter-close review (Target: €6,100 MRR, €22,800 gross) + Q4 OKR p
 ### Step-by-Step Deployment Guide
 1. **Database Setup**: Execute `supabase-auth-schema.sql` on Supabase instance.
 2. **Environment Variables**: Configure `NEXT_PUBLIC_SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`, `RESEND_API_KEY`.
-3. **Stripe Product Setup**: Create 3 core products (`Engine Pro Monthly`, `Engine Pro Annual`, `Studio`) using `setup-all.sh` script.
+3. **Stripe Product Setup**: Create six legacy and core products using the `setup-all.sh` script.
 4. **Deploy Engine**: Execute `./publish.sh` to deploy Next.js engine to Vercel/Fly.io/Render.
 5. **Configure Webhooks**: Register `https://<your-domain>/api/webhooks/stripe` in Stripe Dashboard for subscription events.
 6. **Cron Configuration**: Schedule daily crons at 09:00 Europe/Berlin for `/api/cron/trial-reminders` and `/api/cron/workshop-emails`.
