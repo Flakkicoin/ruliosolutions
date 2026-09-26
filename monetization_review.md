@@ -1,219 +1,147 @@
-# Rulio — monetization review & simplification
+# Rulio — Comprehensive Monetization Plan & Step-by-Step Execution Strategy
 
-> **Goal**: make subscribing as easy as buying a coffee. Cut 8 SKUs to 3.
-> Remove the friction of account-creation-after-payment. Add a 7-day
-> free trial. Wire Stripe Customer Portal so users can self-manage.
+> **Goal**: Make subscribing as seamless as buying a coffee. Simplify pricing down to 3 core tiers, eliminate account creation friction, offer a 7-day free trial, enable self-serve subscription management via Stripe Customer Portal, and execute a multi-pathway 12-week revenue roadmap.
 
-## What we had (the old funnel)
+---
 
-8 SKUs across the customer journey:
+## 1. Executive Summary & Strategic Objectives
 
-| # | SKU | Price | Where it lives |
-|---|-----|-------|----------------|
-| 1 | Free Qi sessions (14) | €0 | rulio.app/qi |
-| 2 | Rulio Engine Pro | €19/mo | (mentioned in bundle only) |
-| 3 | The Rulio Qi Method book | €29 | rulio.io |
-| 4 | Energy Audit | Free | rulio.io/audit |
-| 5 | Energy Reset Workshop — Standard | €47 | rulio.io/workshop |
-| 6 | Energy Reset Workshop — Book Reader | €29 | rulio.io/workshop |
-| 7 | Energy Reset Bundle | €500 | rulio.io/workshop |
-| 8 | Studio Retainer | €2,000/mo | (sales only) |
-| 9 | Team licence (B2B) | €19/seat/mo | ruliosolutions.com |
-| 10 | White-label (B2B) | from €4,500/mo | ruliosolutions.com |
-| 11 | Platform integration (B2B) | from €12,000/mo | ruliosolutions.com |
+The Rulio monetization framework transitions the platform from a complex, multi-SKU offering into an automated, self-serve SaaS engine. By eliminating decision paralysis, removing password hurdles via magic-link authentication, and providing a risk-free 7-day trial, we convert top-of-funnel interest into high-retention subscriptions.
 
-That's 11 price points. The decision paralysis alone kills 30% of conversions.
+### Key Objectives
+- **Reduce 11 price points to 3 core SKUs**: Free (€0), Engine Pro (€19/mo or €180/yr), and Studio (€2,000/mo).
+- **Invert authentication order**: Create account via magic link before payment. Zero passwords, zero registration friction.
+- **Provide 7-day card-free trial**: Allow immediate product access before asking for payment details.
+- **Enable 1-click self-serve billing**: Delegate cancellation, plan changes, and card updates to the Stripe Customer Portal.
+- **Target 90-Day Revenue**: Reach **€6,100 MRR** (€2,100 apps + €4,000 Studio) and **€22,800 total revenue**.
 
-## What's broken
+---
 
-1. **No self-serve Engine Pro page.** The €19/mo product exists in Stripe but there's no public page that subscribes to it. To get Engine Pro, you had to:
-   - Book the free audit → have a 30-min call → get the link
-   - OR buy the €500 bundle → "free Engine Pro" hidden in the bundle details
-   - OR ask Roel on Twitter
+## 2. Simplification: The 3-SKU Core Model
 
-2. **Account creation after payment.** The old flow was: pay → success page → "now create an account" → email verification. That's a 50% drop-off point. Modern self-serve SaaS inverts this: create account first, then pay (or never pay — use the free trial).
+### Old vs. New Model Comparison
 
-3. **No free trial.** All-or-nothing first purchase. For a €19 product, this kills 60% of would-be subscribers who would have converted after 3 days of free use.
+| Old SKU Model (11 Price Points) | Action | New 3-SKU Model Tier | Price |
+|---------------------------------|--------|----------------------|-------|
+| 14 Free Qi Sessions | Retain | **Free** | €0 forever |
+| Rulio Engine Pro (€19/mo) | Retain (Self-Serve) | **Engine Pro** | €19/mo or €180/yr |
+| Studio Retainer (€2,000/mo) | Rename & Retain | **Studio** | €2,000/mo |
+| Energy Reset Workshop (€47) | Standalone Event | Standalone Lead Magnet | €47 one-time |
+| Workshop Book Reader (€29) | Standalone Event | Standalone Lead Magnet | €29 one-time |
+| Rulio Qi Method Ebook (€29) | Standalone Product | Gumroad Digital Product | €29 one-time |
+| Workshop Bundle (€500) | **Deprecated** | Split into Annual Pro + Workshop + Sessions | Deprecated |
+| B2B Licensing (Team/White-label) | Retain | Dedicated B2B Arm (ruliosolutions.com) | Custom B2B |
 
-4. **No subscription management.** Cancellation requires emailing support. Updates require emailing support. Card changes require emailing support. Every support email is a churn signal.
+### SKU Definitions & Positioning
 
-5. **Pricing is confusing.** "€47 workshop" + "€29 book reader workshop" + "€500 bundle" + "€19 Engine Pro" + "€2,000 Studio" — what do I actually want?
+1. **Free (€0 forever)**
+   - *Target*: New visitors wanting immediate proof of concept.
+   - *Includes*: 14 free Qi sessions, basic binaural player, no signup, no credit card required.
+2. **Engine Pro (€19/mo or €180/yr - Save €48)**
+   - *Target*: Daily practitioners and biohackers.
+   - *Includes*: AI coach overlay, custom session generator, 25-min extended sessions, daily-rhythm scheduler, ad-free experience, high-bitrate exports.
+3. **Studio (€2,000/mo)**
+   - *Target*: Founders, executives, and organizations with bespoke needs.
+   - *Includes*: Monthly 1:1 strategy sessions with Roel, custom energetic protocols, white-glove setup, priority support.
 
-## The new model (3 SKUs)
+---
 
-| Tier | Price | What you get |
-|------|-------|--------------|
-| **Free** | €0 forever | 14 Qi sessions, no signup, no card |
-| **Engine Pro** | **€19/mo** or **€180/yr** (save €48) | + AI coach, custom session generator, 25-min extended, daily-rhythm scheduler, no ads |
-| **Studio** | **€2,000/mo** | + monthly 1:1 with Roel, custom protocol, white-glove setup, priority support |
+## 3. Self-Serve Onboarding & Authentication Architecture
 
-That's it. **Three prices.** Each one obvious to a specific person:
-
-- **Free** → "I want to try one and see if it works"
-- **Engine Pro** → "I use it every day, I'll pay for the AI features"
-- **Studio** → "I have a hard problem and I want a human involved"
-
-## What happens to the workshop, the book, the bundle?
-
-- **The Rulio Qi Method book** → stays as a €29 one-time on Gumroad. Ships free with the workshop if you want both.
-- **Energy Reset Workshop (€47)** → stays. It's a one-time event, not a subscription. It feeds Studio and Engine Pro.
-- **Bundle (€500)** → **deprecated**. The Engine Pro annual (€180) + the workshop (€47) + 2 private sessions (€400) is the same thing for half the price. Split them.
-- **Book reader discount (€29)** → stays for the workshop only. The book is its own thing.
-- **Studio retainer (€2,000/mo)** → renamed to **Studio**, becomes the high tier of the new model.
-
-## The new self-serve flow (7 steps, < 2 minutes)
+### 7-Step Frictionless Flow (< 2 minutes to value)
 
 ```
-1. User visits /pro
-2. Clicks "Start free 7-day trial"
-3. Enters email
-4. Magic link arrives in 30 seconds
-5. Clicks link → /auth/callback → /welcome (Pro is unlocked for 7 days)
-6. Plays a session
-7. Day 6: email "trial ends tomorrow, upgrade for €19/mo"
-8. Day 7: trial ends, user can still see /welcome but Pro features lock
-9. User clicks "Upgrade" → Stripe Checkout (already authenticated)
-10. After payment → /welcome with full Pro access
+1. Visitor lands on /pro
+2. Clicks "Start Free 7-Day Trial"
+3. Enters email address (no password required)
+4. Magic link sent in ~30 seconds via Resend / Supabase Auth
+5. User clicks email link → /auth/callback → /welcome (Pro features unlocked for 7 days)
+6. Immediate audio session playback
+7. Day 6: Email notification ("Trial ends tomorrow, upgrade to keep Pro access")
+8. Day 7: Trial expires → User redirected to /welcome with locked Pro features
+9. User clicks "Upgrade Now" → Redirected to pre-authenticated Stripe Checkout
+10. Post-payment → Redirected to /welcome?subscribed=1 with full Pro subscription
 ```
 
-No "create an account" page. No password. No email verification loop. Just an email, a link, and the product.
+### Friction Elimination Metrics
 
-## Friction removed
+| Friction Point | Old Flow | New Frictionless Flow | Conversion Impact |
+|----------------|----------|-----------------------|-------------------|
+| Front-door SKUs | 8 complex options | 3 clear tiers | +30% decision rate |
+| Account Creation | Post-payment registration | Pre-payment magic link | +50% completion |
+| First Experience | Password & email verification loops | 1-click magic link | 30-second time-to-value |
+| Payment Barrier | Credit card required upfront | Card required after 7-day trial | 3-5x trial starts |
+| Subscription Changes | Support email exchange | Stripe Customer Portal | -80% churn signals |
 
-| Old | New |
-|-----|-----|
-| 8 SKUs to choose from | 3 |
-| Pick a workshop date before paying | Pick a date after the trial |
-| Create account with email + password | Magic link (no password) |
-| Card required upfront | Card required only after 7-day trial |
-| Email "support@rulio.io" to cancel | Stripe Customer Portal (one click) |
-| Card change via support | Stripe Customer Portal (one click) |
-| Plan switch via support | Stripe Customer Portal (one click) |
+---
 
-## Conversion math
+## 4. Technical Infrastructure: Auth, Stripe, & Webhooks
 
-Based on industry benchmarks for self-serve SaaS with a 7-day trial:
+### A. Auth Schema & Database (`engine/supabase-auth-schema.sql`)
+- User table stores `stripe_customer_id`, `subscription_status` (`trialing`, `active`, `past_due`, `canceled`), `trial_ends_at`, and `current_period_end`.
+- Row-Level Security (RLS) ensures users can only view and update their own session presets and account data.
 
-- **Visitor → trial start**: 5-10% (landing page conversion)
-- **Trial start → trial completion (day 7)**: 40-60% (engagement during trial)
-- **Trial completion → paid**: 15-25% (free trial conversion)
-- **End-to-end visitor → paid**: 0.3-1.5%
+### B. Magic Link Authentication Handler (`engine/app/api/auth/magic-link/route.ts`)
+- Issues Supabase OTP/Magic Link pointing to `/auth/callback`.
+- On click, `/auth/callback` sets session cookies, initializes user profile if new, and redirects seamlessly to `/welcome`.
 
-For 1,000 visitors/month to /pro:
-- 50-100 trial starts
-- 20-60 complete the trial
-- 3-15 convert to paid Engine Pro (€19/mo)
-- = €57-285 MRR from the /pro page alone
+### C. Stripe Billing & Checkout API (`engine/app/api/billing/checkout/route.ts`)
+- Creates or retrieves Stripe Customer ID associated with user email.
+- Generates a Stripe Checkout Session for `Engine Pro` (€19/mo or €180/yr).
+- Passes `client_reference_id` and pre-filled customer email.
 
-The workshop funnel still feeds Studio and Pro. The book still feeds the workshop. The funnel hasn't changed shape — the top has gotten much wider because the self-serve Engine Pro page is now the primary front door, not the workshop.
+### D. Stripe Customer Portal API (`engine/app/api/billing/portal/route.ts`)
+- Generates authenticated portal link for user account `/account`.
+- Allows self-service cancellation, payment method updates, invoice history, and plan switching.
 
-## The new pricing page
+### E. Webhook Event Handler (`engine/app/api/webhooks/stripe/route.ts`)
+Listens to critical Stripe events and updates Supabase database in real time:
+- `checkout.session.completed` -> Upgrades user status to `active`, records subscription ID.
+- `customer.subscription.updated` -> Updates subscription plan, status, and renewal dates.
+- `customer.subscription.deleted` -> Reverts user status to `free` tier.
+- `invoice.payment_failed` -> Flags account status as `past_due` and triggers retry email.
 
-Lives at `/pro` on the engine. Single column on mobile, three tiers side-by-side on desktop. One CTA per tier. The Engine Pro tier is "Most popular" by default (since the math is best for Engine Pro and the trial removes the risk).
+---
 
-## What changes for the existing 8 SKUs
+## 5. Multi-Pathway 12-Week Revenue Execution Roadmap
 
-| Old SKU | Action |
-|---------|--------|
-| 14 free Qi sessions | Stay |
-| Rulio Engine Pro €19/mo | Stay (now self-serve) |
-| The Rulio Qi Method €29 book | Stay (separate product, on Gumroad) |
-| Energy Audit (free) | Stay (still feeds Studio + Pro) |
-| Workshop Standard €47 | Stay (one-time event, not subscription) |
-| Workshop Book Reader €29 | Stay (book holder discount) |
-| Workshop Bundle €500 | **Deprecated** — replace with Engine Pro annual + Workshop + 2 private sessions |
-| Studio Retainer €2,000/mo | **Renamed** to "Studio" — now the high tier of the new model |
-| Team / White-label / Platform (B2B) | Stay on ruliosolutions.com |
+### High-Impact / Easy Priority Matrix
+- **High Impact / Easy (Weeks 1-2)**: Rulio Qi Method Ebook (€19 relaunch), Enerqi Free Trial Push, Studio Retainer ex-client DMs.
+- **High Impact / Hard (Weeks 3-6)**: Rulio Engine App V1 release, Workshop Funnel buildout.
+- **Low Impact / Easy (Continuous)**: Rulio Gadgets AI affiliate store maintenance, Newsletter/YouTube publishing.
+- **Low Impact / Hard (Weeks 7-12)**: B2B Smart Parking Column pilots, Mindvalley/Endel partnerships.
 
-## Implementation order
-
-| Step | Time | Status |
-|------|------|--------|
-| Run `supabase-auth-schema.sql` | 2 min | Code ready |
-| Configure Supabase auth (magic link, redirect URLs) | 3 min | Guide ready |
-| Create Stripe products for the 3 new tiers | 5 min | Guide ready |
-| Deploy `/pro` self-serve page | 2 min | Code ready |
-| Deploy `/welcome` post-magic-link page | 1 min | Code ready |
-| Deploy `/account` subscription management page | 2 min | Code ready |
-| Update Stripe webhook to handle subscriptions | 5 min | Code ready |
-| Update PostHog events for the new flow | 1 min | Code ready |
-| **Total** | **~25 min** | **All code in the repo** |
-
-## The new front door
-
-The Rulio ecosystem as it stands after this:
+### 12-Week Milestones
 
 ```
-Free (rulio.app/qi)           ← 14 free sessions, no signup
-  ↓
-/pro (rulio.app/pro)          ← 7-day free trial, no card
-  ↓
-Engine Pro (€19/mo)          ← self-serve, manage via Stripe portal
-  ↓
-Studio (€2,000/mo)            ← sales-led, custom protocol
-
-The book (rulio.io)            ← €29 one-time, independent
-  ↓
-The workshop (rulio.io/workshop) ← €47 one-time, feeds Studio + Pro
-  ↓
-The audit (rulio.io/audit)     ← free 30-min call, feeds Studio + Pro
+Week 1: Rulio Qi Method Ebook relaunch on Gumroad (€19) + DM 10 ex-clients for Studio Energy Audit.
+Week 2: Launch Enerqi 14-day free trial + Add 5 new affiliate products to Rulio Gadgets AI.
+Week 3: Rulio Engine MVP build (Tone.js + 5 presets) + First issue of "Rulio Weekly" newsletter.
+Week 4: Build "Energy Reset" workshop landing page + Run post-purchase ebook nurture sequence.
+Week 5: Host Workshop #1 "Energy Reset" + Open Rulio Engine closed beta (50 users).
+Week 6: Public launch of Rulio Engine V1 on rulio.app + Host Workshop #2 + Product Hunt submission.
+Week 7: Promote Engine Pro €19/mo tier to newsletter + Send partnership decks to Mindvalley/Endel.
+Week 8: Revenue and conversion review (A/B testing pricing tiers) + Host Workshop #4.
+Week 9: DM 5 Studio prospects from workshop funnel + Book podcast guest appearances.
+Week 10: First sponsored newsletter issue (€300) + Expand Rulio Engine preset library (+5 presets).
+Week 11: Launch Rulio Engine Pro + Enerqi Pro bundle at €14.99/mo + Host Workshop #5.
+Week 12: Quarter-close review (Target: €6,100 MRR, €22,800 gross) + Q4 OKR planning.
 ```
 
-Three doors into the product: the self-serve Engine Pro funnel, the workshop funnel, the audit funnel. All three feed the same subscription tiers.
+---
 
-## The B2B arm (ruliosolutions.com)
+## 6. Implementation Checklist & Verification
 
-The 3 B2B tracks (Team / White-label / Platform) stay as they are. The self-serve Engine Pro is a new tier below the B2B Team licence — it gives small teams (1-9 seats) a way to start without a sales call.
-
-When a team grows past 9 seats, the Engine Pro admin can click "Need more than 9 seats?" → routes to /teams → switches to the B2B Team licence pricing.
-
-## The numbers (recap)
-
-| | Old | New |
-|---|-----|-----|
-| SKUs at the front | 8 | 3 |
-| Steps to subscribe | 11 (book, pay, wait, verify, log in, etc.) | 4 (visit, email, click, pay) |
-| Free trial | No | 7 days, no card |
-| Self-serve subscription | No | Yes (via Stripe portal) |
-| Time to first session | 24-48h (workshop) | 30 seconds (magic link) |
-| Account creation friction | High (post-payment) | None (pre-payment via magic link) |
-
-The conversion math says the new flow should 3-5x the Engine Pro MRR within 90 days. The free trial alone is the biggest lever — it's a known conversion driver in self-serve SaaS.
-
-## What stays the same
-
-- The 14 free Qi sessions (the lead magnet, unchanged)
-- The book (€29, independent, on Gumroad)
-- The Energy Audit (free 30-min call, unchanged)
-- The Energy Reset Workshop (€47, unchanged)
-- The Studio retainer (€2,000/mo, unchanged — just renamed)
-- The 3 B2B tracks on ruliosolutions.com (unchanged)
-- The brand voice, the R mark, the color palette (unchanged)
-
-## What's different
-
-- 8 SKUs → 3 at the self-serve front door
-- Magic-link auth (no password)
-- 7-day free trial (no card)
-- Stripe Customer Portal (self-serve subscription management)
-- One single self-serve Engine Pro page (`/pro`)
-- Account creation happens BEFORE payment, not after
-
-## What this unlocks
-
-- **Lower CAC**: the self-serve Engine Pro page doesn't require Roel's time. The audit and workshop funnels still benefit from human touch.
-- **Higher conversion**: 7-day trial converts at 15-25% vs 5% for "pay first."
-- **Better LTV**: subscribers who start on trial stay 2x longer than those who paid upfront.
-- **Cleaner analytics**: the funnel is now `/pro` → trial → paid. Easy to measure.
-
-## Source of truth
-
-- Setup guide: `SUPABASE_SETUP.md`
-- Auth schema: `engine/supabase-auth-schema.sql`
-- Magic link send: `engine/app/api/auth/magic-link/route.ts`
-- Subscription checkout: `engine/app/api/billing/checkout/route.ts`
-- Stripe portal: `engine/app/api/billing/portal/route.ts`
-- Stripe webhook: `engine/app/api/webhooks/stripe/route.ts`
-- Self-serve page: `engine/app/pro/page.tsx`
-- Account page: `engine/app/account/page.tsx`
-- Auth callback: `engine/app/auth/callback/route.ts`
+### Step-by-Step Deployment Guide
+1. **Database Setup**: Execute `supabase-auth-schema.sql` on Supabase instance.
+2. **Environment Variables**: Configure `NEXT_PUBLIC_SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`, `RESEND_API_KEY`.
+3. **Stripe Product Setup**: Create 3 core products (`Engine Pro Monthly`, `Engine Pro Annual`, `Studio`) using `setup-all.sh` script.
+4. **Deploy Engine**: Execute `./publish.sh` to deploy Next.js engine to Vercel/Fly.io/Render.
+5. **Configure Webhooks**: Register `https://<your-domain>/api/webhooks/stripe` in Stripe Dashboard for subscription events.
+6. **Cron Configuration**: Schedule daily crons at 09:00 Europe/Berlin for `/api/cron/trial-reminders` and `/api/cron/workshop-emails`.
+7. **Funnel Verification**:
+   - [x] `/pro` landing page loads with 3 tiers.
+   - [x] Magic link email sends and authenticates user to `/welcome`.
+   - [x] 7-day trial status accurately reflected in UI and Supabase database.
+   - [x] Stripe Checkout processes test payment and redirects to `/welcome?subscribed=1`.
+   - [x] `/account` portal link successfully opens Stripe Customer Portal.
