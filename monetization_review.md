@@ -78,7 +78,9 @@ The Rulio monetization framework transitions the platform from a complex, multi-
 ## 4. Technical Infrastructure: Auth, Stripe, & Webhooks
 
 ### A. Auth Schema & Database (`engine/supabase-auth-schema.sql`)
-- User table stores `stripe_customer_id`, `subscription_status` (`trialing`, `active`, `past_due`, `canceled`), `trial_ends_at`, and `current_period_end`.
+- Profile stores `stripe_customer_id`, `trial_started_at`, `trial_ends_at`, and `trial_converted`.
+- Subscription status is stored in `subscriptions.status`.
+- Subscription period end is stored in `subscriptions.current_period_end`.
 - Row-Level Security (RLS) ensures users can only view and update their own session presets and account data.
 
 ### B. Magic Link Authentication Handler (`engine/app/api/auth/magic-link/route.ts`)
