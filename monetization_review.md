@@ -137,7 +137,7 @@ Week 12: Quarter-close review (Target: €6,100 MRR, €22,800 gross) + Q4 OKR p
 ### Step-by-Step Deployment Guide
 1. **Database Setup**: Execute `supabase-auth-schema.sql` on Supabase instance.
 2. **Environment Variables**: Configure `NEXT_PUBLIC_SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`, `RESEND_API_KEY`.
-3. **Stripe Product Setup**: Create 3 core products (`Engine Pro Monthly`, `Engine Pro Annual`, `Studio`) using `setup-all.sh` script.
+3. **Stripe Product Setup**: Create six legacy and core products using the `setup-all.sh` script.
 4. **Deploy Engine**: Execute `./publish.sh` to deploy Next.js engine to Vercel/Fly.io/Render.
 5. **Configure Webhooks**: Register `https://<your-domain>/api/webhooks/stripe` in Stripe Dashboard for subscription events.
 6. **Cron Configuration**: Schedule daily crons at 09:00 Europe/Berlin for `/api/cron/trial-reminders` and `/api/cron/workshop-emails`.
